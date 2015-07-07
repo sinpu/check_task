@@ -1,30 +1,26 @@
-
 files="./testData/*.c"
-dir="./testRunData"
-filename=
+runDir="./testRunData"
+codeDir="./testCodeData"
 
 for fp in $files; do
 	echo $fp
 	file=${fp##*/}
-	# take filename.*
-	#echo $file
+	# take filename.* #echo $file
 
 	filename=${file%.*}
-	# take filename
-	#echo $filename
+	# take filename #echo $filename
 
-	#param=${filename##*.}
-	# take extension
+	#param=${filename##*.}# take extension
 	#echo $param
-	if [ ! -e $dir ]; then
-		mkdir $dir
+	if [ ! -e $runDir ]; then
+		mkrunDir $runDir
 	fi
 
-	gcc $fp -o ${dir}/${filename}
+	gcc $fp -o ${runDir}/${filename}
 
-	inputData="./testData/${filename}.txt"
+	inputData="${codeDir}/${filename}.txt"
 	echo $inputData 
 	echo $fp >> result.txt
-	${dir}/${filename} < $inputData >> result.txt
+	${runDir}/${filename} < $inputData >> result.txt
 
 done
