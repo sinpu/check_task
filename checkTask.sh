@@ -21,12 +21,14 @@ for fp in $files; do
 
 	filename=${file%.*}
 	if [ ! -e $runDir ]; then
-		mkrunDir $runDir
+		mkdir $runDir
 	fi
 
 	gcc $fp -o ${runDir}/${filename}
 
-	inputData="${codeDir}/${filename}.txt"
+	codefile=${filename%_*}
+
+	inputData="${codeDir}/${codefile}.txt"
 	echo $inputData 
 	echo $fp >> $result
 	if [ -e ${runDir}/${filename} ]; then
