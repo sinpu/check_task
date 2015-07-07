@@ -1,16 +1,17 @@
 
 files="./testData/*.c"
-dir="testRunData"
+dir="./testRunData"
+filename=
 
 for fp in $files; do
 	echo $fp
 	file=${fp##*/}
 	# take filename.*
-	echo $file
+	#echo $file
 
 	filename=${file%.*}
 	# take filename
-	echo $filename
+	#echo $filename
 
 	#param=${filename##*.}
 	# take extension
@@ -19,9 +20,11 @@ for fp in $files; do
 		mkdir $dir
 	fi
 
-	gcc $fp -o ./testRunData/$filename
+	gcc $fp -o ${dir}/${filename}
+
+	inputData="./testData/${filename}.txt"
+	echo $inputData 
+	echo $fp >> result.txt
+	${dir}/${filename} < $inputData >> result.txt
+
 done
-
-
-
-
