@@ -1,17 +1,25 @@
-files="./testData/*.c"
-runDir="./testRunData"
+num='t'
+
+while [ ! -e $num ];
+do
+	echo "Student Number:"
+	read num
+done
+
+files="./${num}/*.c"
+runDir="./${num}RunData"
 codeDir="./testCodeData"
+
+result="${num}_result.txt"
+if [ -e $result ]; then
+	mv $result $result.bak
+fi
 
 for fp in $files; do
 	echo $fp
 	file=${fp##*/}
-	# take filename.* #echo $file
 
 	filename=${file%.*}
-	# take filename #echo $filename
-
-	#param=${filename##*.}# take extension
-	#echo $param
 	if [ ! -e $runDir ]; then
 		mkrunDir $runDir
 	fi
@@ -20,7 +28,7 @@ for fp in $files; do
 
 	inputData="${codeDir}/${filename}.txt"
 	echo $inputData 
-	echo $fp >> result.txt
-	${runDir}/${filename} < $inputData >> result.txt
+	echo $fp >> ${num}_result.txt
+	${runDir}/${filename} < $inputData >> ${num}_result.txt
 
 done
