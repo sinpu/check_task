@@ -28,7 +28,10 @@ for fp in $files; do
 
 	inputData="${codeDir}/${filename}.txt"
 	echo $inputData 
-	echo $fp >> ${num}_result.txt
-	${runDir}/${filename} < $inputData >> ${num}_result.txt
-
+	echo $fp >> $result
+	if [ -e ${runDir}/${filename} ]; then
+		${runDir}/${filename} < $inputData >> $result
+	else
+		echo 'File Missing' >> $result
+	fi
 done
