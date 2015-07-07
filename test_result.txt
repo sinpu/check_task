@@ -1,0 +1,6 @@
+./test/aaa.c
+x?:y?:sum = 30
+./test/bbb.c
+x?:y?:sum = 50
+./test/ccc.c
+x?:y?:sum = 80
