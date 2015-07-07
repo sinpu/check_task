@@ -1,5 +1,7 @@
 
 files="./testData/*.c"
+dir="testRunData"
+
 for fp in $files; do
 	echo $fp
 	file=${fp##*/}
@@ -13,8 +15,13 @@ for fp in $files; do
 	#param=${filename##*.}
 	# take extension
 	#echo $param
+	if [ ! -e $dir ]; then
+		mkdir $dir
+	fi
 
-	#gcc 
+	gcc $fp -o ./testRunData/$filename
 done
+
+
 
 
